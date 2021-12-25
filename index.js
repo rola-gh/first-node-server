@@ -1,11 +1,15 @@
-const express = require('express')
+import express from "express";
+import router from './routes/index.js';
+
 const app = express()
-const port = 3000
+const PORT = 3000
+app.use('/api', router);
 
-app.get('/', (req, res) => {
-	res.send('Hello World!');
+app.use('*', (req, res) => {
+    res.status(404).send('Not Found : ( ')
 })
 
-app.listen(port, () => {
-	console.log(`Example app listening at http://localhost:${port}`)
+app.listen(PORT, () => {
+	console.log(` app listening at http://localhost:${PORT}`)
 })
+
